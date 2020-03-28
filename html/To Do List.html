@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务表</title>
+    <style type="text/css">
+        .listCon {
+            width: 600px;
+            margin: 50px auto 0;
+        }
+
+        .inputtxt {
+            width: 550px;
+            height: 30px;
+            border: 1px solid #ccc;
+            padding: 0px;
+            text-indent: 10px;
+        }
+
+        .inputbtn {
+            width: 40px;
+            height: 32px;
+            padding: 0px;
+            border: 1px solid #ccc;
+        }
+
+        .list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .list li {
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .list li span {
+            float: left;
+        }
+
+        .list li a {
+            float: right;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="listCon">
+    <h2>To Do List</h2>
+    <input type="text" name="" id="txt1" class="inputtxt" v-model="sTodo">
+    <input type="button" name="" value="增加" id="btn1" class="inputbtn" @click="fnAdd">
+
+    <ul id="list" class="list">
+        <li v-for="(item,index) in aList">
+            <span>{{index+1}}-{{item}}</span>
+            <a href="javascript:;" class="del" @click="fnDel(index)">删除</a>
+            <a href="javascript:;" class="up" @click="fnUp(index)"> ↑ </a>
+            <a href="javascript:;" class="down" @click="fnDown(index)"> ↓ </a>
+        </li>
+    </ul>
+</div>
+
+</body>
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el: ".listCon",
+        data: {
+            sTodo: '',
+            aList: ['A', 'B', 'C', 'D']
+        },
+        methods: {
+            // 增加
+            fnAdd: function () {
+                if (this.sTodo == "") {
+                    alert("请输入内容！");
+                    return;
+                }
+                this.aList.push(this.sTodo);
+                this.sTodo = "";
+            },
+            // 删除
+            fnDel: function (iNum) {
+                this.aList.splice(iNum, 1)
+            },
+            // 上移动
+            fnUp: function (iNum) {
+                if (iNum == 0) {
+                    alert("已到顶！");
+                    return
+                }
+                // 剪切
+                var sNow = this.aList[iNum];
+                this.aList.splice(iNum, 1);
+                // 粘贴
+                this.aList.splice(iNum - 1, 0, sNow);
+            },
+            // 下移动
+            fnDown: function (iNum) {
+                if (iNum == this.aList.length - 1) {
+                    alert("已到底！");
+                    return
+                }
+                var sNow = this.aList[iNum];
+                this.aList.splice(iNum, 1);
+                this.aList.splice(iNum + 1, 0, sNow);
+            }
+        }
+    })
+</script>
+</html>

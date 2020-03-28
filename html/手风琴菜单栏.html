@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .menu {
+        width: 200px;
+        height: 400px;
+        padding: 0;
+    }
+
+    .menu li {
+        background: dodgerblue;
+    }
+
+    .menu li a {
+        text-decoration: none;
+    }
+
+    .menu li ul {
+        padding: 0;
+        display: none;
+    }
+
+    .menu li .current {
+        display: block;
+    }
+
+    .menu li ul li {
+        background: lightblue;
+    }
+</style>
+
+<body>
+    <ul class="menu">
+        <li>
+            <a href="#" class="level">一</a>
+            <ul class="current">
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="level">二</a>
+            <ul>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="level">三</a>
+            <ul>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(".level").click(function () {
+            $(this).next().stop().slideToggle().parent().siblings().children("ul").slideUp();
+        })
+    </script>
+</body>
+
+</html>

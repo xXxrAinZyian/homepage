@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <select id="one" multiple="multiple" style="width:120px; height: 120px;">
+        <option>一</option>
+        <option>二</option>
+        <option>三</option>
+        <option>四</option>
+        <option>五</option>
+    </select>
+    <input id=">>" type="button" value=">>">
+    <input id="<<" type="button" value="<<">
+    <input id=">" type="button" value=">">
+    <input id="<" type="button" value="<">
+    <select id="two" multiple="multiple" style="width:120px; height: 120px;">
+    </select>
+
+
+    <script>
+        var one = document.getElementById("one")
+        var two = document.getElementById("two")
+        document.getElementById(">>").onclick = function () {
+            var count = one.children.length
+            for (var i = 0; i < count; i++) {
+                two.appendChild(one.children[0])
+            }
+        }
+
+        document.getElementById("<<").onclick = function () {
+            var count = two.children.length
+            for (var i = 0; i < count; i++) {
+                one.appendChild(two.children[0])
+            }
+        }
+
+        document.getElementById(">").onclick = function () {
+            var count = one.children.length
+            var item = []
+            for (var i = 0; i < count; i++) {
+                if (one.children[i].selected) {
+                    item.push(one.children[i])
+                }
+            }
+            for (var i = 0; i < item.length; i++) {
+                console.log(item[i])
+                two.appendChild(item[i])
+                item[i].selected = false
+            }
+        }
+
+        document.getElementById("<").onclick = function () {
+            var count = two.children.length
+            var item = []
+            for (var i = 0; i < count; i++) {
+                if (two.children[i].selected) {
+                    item.push(two.children[i])
+                }
+            }
+            for (var i = 0; i < item.length; i++) {
+                console.log(item[i])
+                one.appendChild(item[i])
+                item[i].selected = false
+            }
+        }
+    </script>
+</body>
+
+</html>

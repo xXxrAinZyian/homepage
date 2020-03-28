@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .box {
+            width: 400px;
+            height: 300px;
+            border: 1px solid black;
+            background: white;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            display: none;
+        }
+
+        .box-move {
+            background-color: black;
+            color: white;
+            cursor: move;
+        }
+
+        .box-close {
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .hidden {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+            display: none;
+        }
+    </style>
+</head>
+
+<body style="margin: 0; padding: 0;">
+    <div id='test' class="hidden"></div>
+    <span> 开启 </span>
+    <div id="box" class="box">
+        <div class="box-move">
+            <span class="box-close"> 关闭 </span>
+        </div>
+
+    </div>
+
+    <script>
+        var box = document.getElementById("box")
+        var boxHidden = document.querySelector(".hidden")
+        var boxOpen = box.previousElementSibling
+        var boxMove = box.children[0]
+        var boxClose = boxMove.children[0]
+
+
+        boxOpen.onclick = function () {
+            box.style.display = 'block'
+            boxHidden.style.display = 'block'
+        }
+        boxClose.onclick = function () {
+            box.style.display = 'none'
+            boxHidden.style.display = 'none'
+        }
+
+        boxMove.onmousedown = function (e) {
+            // 鼠标按下时 盒子距离屏幕的位置
+            var boxX = e.pageX - box.offsetLeft
+            var boxY = e.pageY - box.offsetTop
+
+            document.onmousemove = function (e) {
+                box.style.left = (e.pageX - boxX) + 'px'
+                box.style.top = (e.pageY - boxY) + 'px'
+            }
+
+            document.onmouseup = function () {
+                document.onmousemove = "null"
+            }
+        }
+    </script>
+</body>
+
+</html>

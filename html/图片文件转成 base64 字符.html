@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <h4>file 文件转成 base64 字符</h4>
+      <input type="file" id="file" />
+      <img src="" id="portrait" style="width:100px; height:100px; display: block;" />
+      <textarea id="base64Textarea" cols="30" rows="10" placeholder="base64信息输出"></textarea>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div>
+      <h4>base64 字符转成 blob对象</h4>
+      <button id="toBlob">点击转成blob对象</button>
+      <p>假如是只有base64字符，那么转成blob对象会方便于上传到七牛</p>
+    </div>
+
+    <script>
+      var base64Data = ''
+      var blob = null
+
+      document.getElementById('file').onchange = function(e) {
+        var file = e.target.files[0]
+        if (window.FileReader) {
+          var fr = new FileReader()
+          fr.readAsDataURL(file)
+          fr.onloadend = function(e) {
+            base64Data = e.target.result
+            document.getElementById('portrait').src = base64Data
+            document.getElementById('base64Textarea').value = base64Data
+          }
+        }
+      }
+
+      //转成blob对象第一种方式
+      function dataURLtoBlob(dataurl) {
+        var arr = dataurl.split(','),
+          mime = arr[0].match(/:(.*?);/)[1],
+          bstr = atob(arr[1]),
+          n = bstr.length,
+          u8arr = new Uint8Array(n)
+
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n)
+        }
+        return new Blob([u8arr], { type: mime })
+      }
+
+      document.getElementById('toBlob').onclick = function() {
+        if (base64Data) {
+          blob = dataURLtoBlob(base64Data)
+          console.log(blob)
+
+          alert('已转成blob对象，请查看浏览器 console')
+        } else {
+          alert('你还没生成base64文件')
+        }
+      }
+    </script>
+  </body>
+</html>

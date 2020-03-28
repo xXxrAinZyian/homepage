@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            background: yellow
+        }
+
+        .show {
+            display: block;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <input id="input" type="button" value="隐藏">
+    <div id="div" class="show"></div>
+    <script>
+        var state = true
+        document.getElementById("input").onclick = function () {
+            if (state) {
+                document.getElementById("input").value = "显示";
+                document.getElementById("div").className = 'hidden'
+                state = false
+            } else {
+                document.getElementById("input").value = "隐藏";
+                document.getElementById("div").className = 'show'
+                state = true
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!-- 图片懒加载
+优点：1. 通过图片或者数据的延迟加载，可以加快页面的渲染速，让第一次打开页面速度变快
+2. 只有滑动到某个区域才加载真实的图片，可以节省加载流量
+处理方案：
+1. 将所有需要延迟加载的图片使用一个 div 抱起来，设置宽高的默认占位图
+2. 开始所有的 img 的 src="" 把真实图片的地址放到 img 的自定义属性上，让 img 隐藏
+3. 等所有其他资源加载完成后再开始加载图片
+4. 当页面滚动的时候，当前图片区域完全显示出来后在加载真实的图片 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img {
+            display: block;
+            width: 700px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="img-group">
+        <li><img src="timg.jpg" data-src="http://dl.ppt123.net/pptbj/201603/2016030410190920.jpg">
+        </li>
+        <li><img src="timg.jpg"
+                data-src="http://file02.16sucai.com/d/file/2014/0807/247d1b1d3fc65f7516856244257f71ec.jpg">
+        </li>
+        <li><img src="timg.jpg" data-src="http://img0.imgtn.bdimg.com/it/u=2030454052,4161660918&fm=26&gp=0.jpg">
+        </li>
+        <li><img src="timg.jpg" data-src="http://cli.clewm.net/file/2015/01/20/81b71bc509d09368d4602a4b5b05d093.jpg">
+        </li>
+        <li><img src="timg.jpg"
+                data-src="http://file02.16sucai.com/d/file/2014/0920/9865f4ed66ec1829fed3fd626689c448.jpg">
+        </li>
+        <li><img src="timg.jpg" data-src="http://photo.16pic.com/00/39/45/16pic_3945101_b.jpg">
+        </li>
+        <li><img src="timg.jpg"
+                data-src="http://hbimg.b0.upaiyun.com/ea216c8584830aefaa63728edabb5b5ccbdbf2ca40ff8-u4akor_fw658">
+        </li>
+    </ul>
+    <script type="text/javascript">
+        let imgArr = document.querySelectorAll('img');
+        let len = imgArr.length;
+        let n = 0; //记录加载图片的位置，避免从第一张开始加载
+        let canrun = true;
+        let seeHeight = document.documentElement.clientHeight;
+        console.log("seeHeight =" + seeHeight);
+
+        lazyLoad();
+        window.onscroll = function () {
+            if (!canrun) {
+                return;
+            }
+            canrun = false;
+            setTimeout(function () {
+                console.log('*****');
+                lazyLoad();
+                canrun = true;
+            }, 1000);
+
+        }
+
+        function lazyLoad() {
+            let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            console.log("scrollTop =" + scrollTop);
+            for (let i = 0; i < len; i++) {
+                console.log(imgArr[i].offsetTop);
+                if (imgArr[i].offsetTop < seeHeight + scrollTop) {
+                    if (imgArr[i].getAttribute('src') == 'timg.jpg') {
+                        imgArr[i].src = imgArr[i].getAttribute('data-src');
+                    }
+                    n = i + 1;
+                    console.log("n=" + n);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        let recorder
+        function start() {
+            let videoTarget = document.getElementById('audio');
+            navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 400, height: 600 } })
+                .then((stream) => {
+                    recorder = new MediaRecorder(stream);
+                    videoTarget.srcObject = stream;
+                    videoTarget = (...arg) => {
+                        console.log(arg);
+                    }
+                    recorder.ondataavailable = (event) => {
+                        let url = URL.createObjectURL(event.data);
+                        let link = document.createElement("a");
+                        link.target = "_blank";
+                        link.href = url;
+                        link.click();
+
+                    }
+                    recorder.start();
+                });
+        }
+
+        function stop() {
+            recorder.stop();
+        }
+    </script>
+</head>
+
+<body>
+    <video id="audio" width="400" height="600" controls autoplay></video>
+    <input onclick="start()" type="button" value="开始" />
+    <input onclick="stop()" type="button" value="结束" />
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        nav {
+            width: 1000px;
+            height: 80px;
+            border: 1px solid pink;
+            margin: 100px auto;
+            overflow: hidden;
+
+        }
+
+        nav li {
+            float: left;
+        }
+
+        nav ul {
+            width: 200%;
+            animation: moving 10s linear infinite;
+            /*引用动画*/
+            /*linear 匀速动画*/
+        }
+
+        nav li div {
+            width: 195px;
+            height: 60px;
+            border: 1px solid red;
+        }
+
+        /*定义动画*/
+        @keyframes moving {
+            form {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-1000px);
+            }
+        }
+
+        nav:hover ul {
+            /*鼠标经过nav 里面的ul 就暂停动画*/
+            animation-play-state: paused;
+            /*鼠标经过暂停动画*/
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <div>1</div>
+            </li>
+            <li>
+                <div>2</div>
+            </li>
+            <li>
+                <div>3</div>
+            </li>
+            <li>
+                <div>4</div>
+            </li>
+            <li>
+                <div>5</div>
+            </li>
+            <li>
+                <div>1</div>
+            </li>
+            <li>
+                <div>2</div>
+            </li>
+            <li>
+                <div>3</div>
+            </li>
+            <li>
+                <div>4</div>
+            </li>
+            <li>
+                <div>5</div>
+            </li>
+
+        </ul>
+    </nav>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+<div class="bg">
+    <ul>
+        <li>
+            <a href="#">手机 电话卡</a>
+            <div class="div1">
+                <p>这是我的第一个滑动门</p>
+                <a href="http://baidu.com">百度</a>
+            </div>
+        </li>
+        <li>
+            <a href="#">手机 电话卡</a>
+            <div class="div2"></div>
+        </li>
+        <li>
+            <a href="#">手机 电话卡</a>
+            <div class="div3"></div>
+        </li>
+        <li>
+            <a href="#">手机 电话卡</a>
+            <div class="div3"></div>
+        </li>
+    </ul>
+</div>
+
+
+<style>
+    body, ul, li, div {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul {
+        list-style: none;
+        padding: 20px 0px;
+        width: 234px;
+        background: rgba(0, 0, 0, .6);
+        /*定位 作为父级使用*/
+        position: relative;
+    }
+
+    ul li {
+        height: 42px;
+        line-height: 42px;
+        padding-left: 20px;
+
+    }
+
+    ul li:hover {
+        background: #ff6700;
+    }
+
+    ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+
+    /*滑动门*/
+    ul .div1, .div2, .div3 {
+        width: 800px;
+        height: 460px;
+        background: skyblue;
+
+        /*使用定位实现滑动门-------重要步骤*/
+
+        /*上海尚学堂java
+       加薇心 java8733 了解更多获取资料
+       */
+        position: absolute;
+        top: 0;
+        left: 234px;
+        display: none;
+    }
+
+    /*当鼠标悬停在内容上是显示对应的代码块*/
+    ul li:hover .div1 {
+        display: block;
+        width: 800px;
+        opacity: 1;
+    }
+
+    ul li:hover .div2 {
+        display: block;
+        background: pink;
+        width: 600px;
+        height: 460px;
+    }
+</style>
+
+</body>
+</html>

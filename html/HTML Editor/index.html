@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="keywords" content="JS代码,其他代码,JS广告代码,JS特效代码" />
+<meta name="description" content="此代码内容为新浪博客HtmlEditor在线编辑器，属于站长常用代码，更多其他代码代码请访问JS代码站。" />
+<title>新浪博客HtmlEditor在线编辑器_JS代码站</title>
+<style type="text/css">
+body{font-size:12px;color:#333333;}
+</style>
+</head>
+<body>
+<div align='center' style='BORDER-RIGHT: #8394b2 1px dotted; BORDER-TOP: #8394b2 1px dotted; BACKGROUND: #eaecee; BORDER-LEFT: #8394b2 4px solid; BORDER-BOTTOM: 0px dotted; padding: 5px; width: 90px; color: blue'><b>调用：</b></div>
+<div style='BORDER-RIGHT: #8394b2 1px dotted; BORDER-TOP: #8394b2 1px dotted; BACKGROUND: #fafcfe; BORDER-LEFT: #8394b2 4px solid; BORDER-BOTTOM: #8394b2 1px dotted; padding: 3px'>
+&lt;input type=&quot;hidden&quot; name=&quot;content&quot; id=&quot;<font color="#FF0000">content</font>&quot;&gt;<br>
+	&lt;iframe  src=&quot;Edit/editor.htm?id=<font color="#FF0000">content</font>&amp;ReadCookie=0&quot; frameBorder=&quot;0&quot; 
+	marginHeight=&quot;0&quot; marginWidth=&quot;0&quot; scrolling=&quot;No&quot; width=&quot;700&quot; height=&quot;460&quot;&gt;&lt;/iframe&gt;<br>
+<br>
+	注意：id为调用参数(小写)，即隐藏的内容表单项id，
+ReadCookie设置是否读取上次未提交的数据，1为开启，0为关闭（注意大小写）。</div>
+<form name="form1" method="post" action=""> 
+<input type="hidden" name="content" id="content" value="<div>&nbsp;表单的内容</div>">
+<iframe id="myiframe" src="Edit/editor.htm?id=content&ReadCookie=0" frameborder="0" scrolling="no" width="700" height="460"></iframe>
+<br><br>
+<input type="button" value="查看表单内容" onClick="alert(content.value);">
+</form>
+
+
+<p></p>
+<p><p><strong>调用：</strong></p>
+<p><font color="#ff6600">&lt;input type=&quot;hidden&quot; name=&quot;content&quot; id=&quot;content&quot;&gt;<br />
+&lt;iframe src=&quot;Edit/editor.htm?id=content&amp;ReadCookie=0&quot; frameBorder=&quot;0&quot; marginHeight=&quot;0&quot; marginWidth=&quot;0&quot; scrolling=&quot;No&quot; width=&quot;700&quot; height=&quot;460&quot;&gt;&lt;/iframe&gt;</font></p>
+<p>注意：id为调用参数(小写)，即隐藏的内容表单项id， ReadCookie设置是否读取上次未提交的数据，1为开启，0为关闭（注意大小写）。</p>
+<p>在上次修复的基础上增加了一个附件上传功能，但还是有几个不理想的地方。<br />
+<br />
+缺陷：<br />
+1缺乏安全判断（上一版也有这个问题）<br />
+2附件上传后，插入编辑器的样式很难看。<br />
+3缺清除格式功能</p>
+<p>* 修改者：mawendong&nbsp;&nbsp;提取者：不详 源代码开发者：sina某技术员<br />
+&nbsp;</p></p>
+<p></p>
+</body>
+</html>

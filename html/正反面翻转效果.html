@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 224px;
+            height: 224px;
+            margin: 100px auto;
+            position: relative;
+            /*transform-style: preserve-3d;*/
+            /*  1.保留当前空间位置
+              2.是图片扁平化*/
+           perspective: 500px;
+        }
+
+        div span {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 1s;
+            background: palegoldenrod;
+
+        }
+
+        div span:first-child {
+            background: #0a6aa1;
+            z-index: 1;
+            backface-visibility: hidden; /*不是正面对向屏幕，就隐藏*/
+        }
+
+        div:hover span {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span>1</span>
+    <span>2</span>
+</div>
+</body>
+</html>

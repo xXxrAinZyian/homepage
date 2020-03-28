@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        height: 2000px;
+        width: 5000px;
+    }
+
+    div {
+        width: 50px;
+        height: 50px;
+        background: red;
+        border-radius: 50%;
+        position: absolute;
+    }
+</style>
+
+<body>
+
+    <div id="demo"></div>
+    <script>
+        var demo = document.getElementById("demo")
+        document.onmousemove = function (e) {
+            demo.style.left = e.pageX - 20 + 'px'
+            demo.style.top = e.pageY - 20 + 'px'
+        }
+    </script>
+</body>
+
+</html>

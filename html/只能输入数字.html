@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <input id="demo" type="text">
+    <script>
+        document.getElementById("demo").onkeydown = function(e) {
+            if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode !== 8) {
+                // 取消默认行为
+                e.preventDefault()
+            }
+        }
+    </script>
+</body>
+
+</html>

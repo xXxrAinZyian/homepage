@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=" utf-8">
+    <meta name="author" content="http://www.softwhy.com/"/>
+    <title>HTML CSS 显示隐藏</title>
+    <style type="text/css">
+        #box {
+            position: relative;
+        }
+
+        #box *:not(#shbox) {
+            display: inline-block;
+        }
+
+        input {
+            position: absolute;
+            left: -10000000px;
+        }
+
+        :checked ~ #shbox {
+            display: none;
+        }
+
+        label {
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid green;
+            position: absolute;
+            left: 0px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #shbox {
+            background: #ccc;
+            color: red;
+            width: 200px;
+            height: 200px;
+            border: 1px solid blue;
+            box-sizing: border-box;
+            padding: 50px;
+            position: absolute;
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="checkbox" id="antzone"/>
+    <label for="antzone">显示/隐藏</label>
+    <div id="shbox"></div>
+</div>
+</body>
+</html>

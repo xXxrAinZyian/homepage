@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+        }
+
+        .box {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        ul {
+            position: relative;
+        }
+
+        li {
+            width: 100%;
+            height: 100vh;
+            font-size: 30px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        li p {
+            font-size: 30px;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul style="top: 0;">
+            <li style="background-color: yellowgreen;">一页面<p>一页面</p>
+            </li>
+            <li style="background-color: red;">二页面<p>二页面</p>
+            </li>
+            <li style="background-color: skyblue;">三页面<p>三页面</p>
+            </li>
+            <li style="background-color: yellow;">四页面<p>四页面</p>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var kai = true, i = 0;
+        var oUl = document.getElementsByTagName("ul")[0];
+        document.addEventListener('mousewheel', function (ev) {
+            var ev = window.event || ev;
+            if (kai) {
+                kai = false;
+                oUl.style.transition = " 0.5s ease";
+                if (ev.wheelDelta < 0 && i < 3) {
+                    i++;
+                }
+                if (ev.wheelDelta > 0 && i > 0) {
+                    i--;
+                }
+                setTimeout(function () {
+                    oUl.style.top = -i * 100 + 'vh';
+                }, 0);
+                // console.log(i)
+                setTimeout(function () {
+                    kai = true;
+                }, 1000);
+            }
+        });
+        onresize
+        window.onresize = function () {
+            oUl.style.transition = "none";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+</head>
+<style>
+    input {
+        width: 100px;
+        height: 50px;
+    }
+
+    .active {
+        background: gold;
+    }
+
+    .context div {
+        width: 300px;
+        height: 300px;
+        display: none;
+
+    }
+
+    .context .current {
+        background: gold;
+        display: block;
+    }
+</style>
+<body>
+<div>
+    <div class="button">
+        <input type="button" value="ButtonOne" class="active">
+        <input type="button" value="BottonTwo">
+        <input type="button" value="BottonThree">
+    </div>
+    <div class="context">
+        <div class="current">Context One</div>
+        <div>Context Two</div>
+        <div>Context Three</div>
+    </div>
+</div>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $("input").click(function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        $$(".context div").eq($(this).index()).addClass("current").siblings().removeClass("current");
+    });
+</script>
+</html>

@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝滚动</title>
+    <style>
+        .div {
+            width: 300px;
+            height: 100px;
+            overflow: hidden;
+            float: left;
+        }
+
+        .divA {
+            width: 1000px;
+            height: 120px;
+            position: relative;
+        }
+
+        .span1 {
+            background: red;
+            padding: 50px;
+            line-height: 100px;
+        }
+
+        .span2 {
+            background: blue;
+            padding: 50px;
+            line-height: 100px;
+        }
+
+        .span3 {
+            background: yellow;
+            padding: 50px;
+            line-height: 100px;
+        }
+        .btnA{
+            margin: 30px;
+            float: left;
+        }
+        .btnB{
+            margin: 30px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div class="btnA" id="btnA"><</div>
+<div class="div" id="slide">
+    <div class="divA" id="divA">
+        <span class="span1"></span>
+        <span class="span2"></span>
+        <span class="span3"></span>
+        <span class="span1"></span>
+        <span class="span2"></span>
+        <span class="span3"></span>
+    </div>
+</div>
+<div class="btnB" id="btnB">></div>
+</body>
+
+<script type="text/javascript">
+    var oDiv = document.getElementById("divA");
+    var oLeft = document.getElementById("btnA");
+    var oRight = document.getElementById("btnB");
+    var oSlide = document.getElementById("slide");
+    var iLeft = 0;
+    var iSpeed = -3;
+    var iLastSpeed = 0;
+    var oTimer = setInterval(fMove, 30);
+
+    // 滚动
+    function fMove() {
+        iLeft += iSpeed;
+        oDiv.style.left = iLeft + "px";
+        if (iLeft < -300) {
+            iLeft = 0;
+        }
+        if (iLeft > 0)
+            iLeft = -300;
+        }
+
+    // 点击按钮切换方向
+    oLeft.onclick = function () {
+        iSpeed = -3;
+    };
+    oRight.onclick = function () {
+        iSpeed = 3
+    };
+
+    //  移入滚动停止，移出滚动继续
+    oSlide.onmouseover = function () {
+        iLastSpeed = iSpeed;
+        iSpeed = 0
+    };
+    oSlide.onmouseout = function () {
+        iSpeed = iLastSpeed;
+    };
+</script>
+</html>

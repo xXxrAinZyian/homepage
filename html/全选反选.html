@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <input id="all" type="checkbox"> 全选 </div>
+    <input id="reverse" type="checkbox"> 反选 </div>
+    <div id="item">
+        <p><input type="checkbox"> 1 </p>
+        <p><input type="checkbox"> 2 </p>
+        <p><input type="checkbox"> 3 </p>
+        <p><input type="checkbox"> 4 </p>
+        <p><input type="checkbox"> 5 </p>
+    </div>
+
+    <script>
+        var all = document.getElementById("all")
+        var reverse = document.getElementById("reverse")
+        var items = document.getElementById('item').getElementsByTagName("input")
+        all.onclick = function () {
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i]
+                if (this.checked) {
+                    item.checked = true
+                } else {
+                    item.checked = false
+                }
+            }
+        }
+
+        reverse.onclick = function () {
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i]
+                item.checked = !item.checked
+
+                var state = true
+                for (var j = 0; j < items.length; j++) {
+                    var item = items[j]
+                    if (!item.checked) {
+                        state = false
+                    }
+                }
+                all.checked = state
+            }
+        }
+
+        for (var i = 0; i < items.length; i++) {
+            var item = items[i]
+            item.onclick = function () {
+                var state = true
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i]
+                    if (!item.checked) {
+                        state = false
+                    }
+                }
+                all.checked = state
+            }
+        }
+    </script>
+</body>
+</html>
